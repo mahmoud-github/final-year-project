@@ -1,0 +1,96 @@
+{% extends 'teacher/teacherbase.html' %}
+{% block content %}
+{%load static%}
+
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<br><br>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Available Questions</h6>
+    </div>
+    <table class="table table-hover table-bordered" id="dev-table">
+      <thead>
+        <tr>
+
+          <th>Question</th>
+         
+          <th>Marks</th>
+          <th>Rank</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      {% for c in questions %}
+      <tr>
+
+        <td> {{c.question}}</td>
+        
+        <td>{{c.marks}}</td>
+        <td>{{c.rank}}</td>
+        <td>
+          <a class="btn btn-success btn-xs" style="border-radius: 0%;" href="{% url 'update-question' c.id  %}"><span class="glyphicon glyphicon-edit"></span></a>
+          <a class="btn btn-danger btn-xs" style="border-radius: 0%;" href="{% url 'remove-question' c.id  %}"><span class="glyphicon glyphicon-trash"></span></a>
+        
+        </td>
+        
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<h3 style="margin: 20px;">Upload a PDF</h3>
+<form style="margin: 20px;" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="" style="font-weight: bolder;">Title:</label>
+    
+    <input type="text" name="title">
+    <br><br>
+    <input type="file" name="pdf_file" >
+    <br>
+
+    <div style="float: left;">
+    <b>Questions Level: </b><br>
+    <input type="checkbox" name="easy" value="1"> Easy<br>
+    <input type="checkbox" name="mid" value="2"> Mid<br>
+    <input type="checkbox" name="hard" value="3"> Hard<br>
+    <input type="checkbox" name="veryhard" value="4"> Very Hard
+    </div>
+    
+    <div style="float: left; margin-left:50px ;">
+    <b>Questions Type:</b>
+    <br>
+    <input type="checkbox" name="multichoice" value="multichoice"> MultiChoice<br>
+    <input type="checkbox" name="truefalse" value="truefalse"> True|False<br>
+    </div>
+
+    <br><br><br><br><br><br><br>
+    
+    <button type="submit"  class="btn btn-success">Upload</button>
+    
+
+</form>
+
+<a href="{% url 'questions-Toword'  %}" class="btn btn-info" style="position: sticky; float:right; margin-right: 20px;"><span class="glyphicon glyphicon-print"> Word</span></a>
+
+
+{% endblock content %}

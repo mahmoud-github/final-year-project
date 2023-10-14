@@ -1,0 +1,56 @@
+{% extends 'teacher/teacherbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+</head>
+<h2 style="text-align:center;">Edite Question</h2>
+<form method="POST" autocomplete="off" style="margin:100px;margin-top: 0px;">
+    {%csrf_token%}
+    <div class="form-group">
+        
+
+      <label for="question" >Question</label>
+      <input type="text" name="Question" value="{{question.question}}">
+        <br>
+      <label for="question_number">Marks&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+      <input type="number" name="Marks" value="{{question.marks}}">  
+      <br>
+      <label for="option1">Option 1&nbsp</label>
+      <input type="text" name="Option1" value="{{question.option1}}">
+      <br>
+      <label for="option2">Option 2&nbsp</label>
+      <!-- {% render_field questionForm.option2|attr:'required:true' class="form-control" placeholder="Example: It is a non-procedural language" %} -->
+      <input type="text" name="Option2" value="{{question.option2}}">  
+      <br>
+      <label for="option3">Option 3&nbsp</label>
+      <!-- {% render_field questionForm.option3|attr:'required:false' class="form-control" placeholder="Example: It is a high-level language" %} -->
+      <input type="text" name="Option3" value="{{question.option3}}"> 
+      <br>
+      <label for="option4">Option 4&nbsp</label>
+      <!-- {% render_field questionForm.option4|attr:'required:false' class="form-control" placeholder="Example: It is Data Definition language" %} -->
+      <input type="text" name="Option4" value="{{question.option4}}">  
+      <br>
+      
+      <label for="rank">rank (between 1 and 5): </label>
+      <!-- {% render_field questionForm.option4|attr:'required:false' class="form-control" placeholder="Example: It is Data Definition language" %} -->
+      <input type="number" name="rank" value="{{question.rank}}" min="1" max="5">  
+      <br><br>
+
+      <label for="answer" style="color:red; text-decoration: underline;">Current Correct Answer : {{question.answer}}</label><br>
+      Option1: <input type="radio" name="options" value="Option1"><br>
+      Option2: <input type="radio" name="options" value="Option2"><br>
+      Option3: <input type="radio" name="options" value="Option3"><br>
+      Option4: <input type="radio" name="options" value="Option4"><br>
+      <!-- {% render_field questionForm.answer|attr:'required:true' class="form-control" %} -->
+    </div>
+    <br>
+
+    <button type="submit" class="btn btn-success" style="border-radius: 0%;">Submit Question</button>
+  </form>
+<br><br><br>
+{% endblock content %}

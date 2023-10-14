@@ -1,0 +1,18 @@
+{% extends 'teacher/teacherbase.html' %}
+{% block content %}
+
+
+
+<h2 style="text-align: center;">Upload a PDF</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="position: sticky; float: right ; right:40%;" >Upload</button>
+</form>
+
+
+
+<br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+{% endblock content %}
